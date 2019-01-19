@@ -1,22 +1,11 @@
-#include "Test.h"
-#include "Variant.h"
-#include "TestManager.h"
-
-struct TestTest : public xdr::Test<>
-{ 
-    TestTest() : xdr::Test<>("test_test") { }
-};
+#include <xplodr.h>
+#include <iostream>
 
 int main()
 {
-    TestTest tt;
-    xdr::Variant v { "hello" };
-    std::string s = v.as<std::string>();
-
     xdr::TestManager& tm = xdr::TestManager::getInstance();
-    tm += std::make_shared<TestTest>();
+    tm += std::make_shared<abtests::Example>();
 
-    auto sp = tm.query<TestTest>();
-
-    return 0;
+    auto sp = tm.query<abtests::Example>();
+    std::cout << (*sp)(abtests::Example::presets::BASIC).as<std::string>() << std::endl;
 }

@@ -1,0 +1,11 @@
+BEGIN
+CREATE_TEST(Example) AS
+WITH_PRESETS(
+    BASIC = 1,
+    ADVANCED = 2
+)
+WHERE
+    MAP(BASIC, "Basic") AND
+    MAP(ADVANCED, "Advanced")
+END_MAPPING
+END

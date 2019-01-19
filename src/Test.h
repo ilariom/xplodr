@@ -22,6 +22,10 @@ public:
 
     inline bool isActiveForVersion(const std::string&);
 
+protected:
+    void setMinVersion(const std::string& minVer) { this->minVer = minVer; }
+    void setMaxVersion(const std::string& maxVer) { this->maxVer = maxVer; }
+
 private:
     std::string name;
     std::string minVer;
