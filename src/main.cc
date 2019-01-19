@@ -14,7 +14,7 @@ int main()
     std::string s = v.as<std::string>();
 
     xdr::TestManager& tm = xdr::TestManager::getInstance();
-    tm += std::shared_ptr<TestTest>();
+    tm += std::make_shared<TestTest>();
 
     auto sp = tm.query<TestTest>();
 

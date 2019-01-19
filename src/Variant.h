@@ -18,7 +18,7 @@ public:
 
 public:
     Variant() : type(Type::VOID) { }
-    explicit Variant(const std::string& s) { *this = s; }
+    explicit Variant(const char* s) { *this = s; }
     explicit Variant(double d) { *this = d; }
     explicit Variant(int i) { *this = i; }
     explicit Variant(int64_t i64) { *this = i64; }
@@ -32,7 +32,7 @@ public:
     Variant& operator=(Variant&&) = default;
 
 public:
-    inline Variant& operator=(const std::string& s);
+    inline Variant& operator=(const char* s);
     inline Variant& operator=(double d);
     inline Variant& operator=(int i);
     inline Variant& operator=(int64_t i64);
@@ -54,7 +54,7 @@ private:
     Type type = Type::VOID;
 };
 
-inline Variant& Variant::operator=(const std::string& s)
+inline Variant& Variant::operator=(const char* s)
 {
     this->s = s;
     this->type = Type::STRING;
