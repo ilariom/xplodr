@@ -46,10 +46,13 @@ public:
 
 private:
     std::string s;
-    double d;
-    int i;
-    int64_t i64;
-    bool b;
+    
+    union {
+        double d;
+        int i;
+        int64_t i64;
+        bool b;
+    };
 
     Type type = Type::VOID;
 };

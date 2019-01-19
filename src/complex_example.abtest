@@ -1,0 +1,24 @@
+BEGIN
+
+CREATE_TEST(ComplexExample)
+WITH_MIN_VERSION(1.30.0)
+WITH_MAX_VERSION(1.58.0)
+THAT_EXPIRES_IN(WEEKS(2))
+AS
+    WITH_PRESETS(
+        BASIC = 1,
+        ADVANCED = 2,
+        PREMIUM = 3,
+        ROYAL = 4
+    )
+    WHERE
+        MAP(BASIC, "Basic") AND
+        MAP(ADVANCED, "Advanced") AND
+        MAP(PREMIUM, 1) AND
+        MAP(ROYAL, true)
+    END_MAPPING
+
+    INTERFACE:
+        bool gimmeFive() { return true; }
+    
+END

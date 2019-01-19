@@ -20,11 +20,14 @@ public:
     TestManager& operator=(TestManager&&) = delete;
 
 public:
-    template<typename T = std::less<std::string>>
-    inline void operator+=(std::shared_ptr<T> test);
+    template<typename TestType>
+    inline void operator+=(std::shared_ptr<TestType> test);
 
     template<typename TestType>
     inline std::shared_ptr<TestType> query();
+
+    template<typename TestType>
+    inline Variant ask(typename TestType::presets);
 
 private:
     TestManager() = default;
@@ -51,6 +54,17 @@ inline std::shared_ptr<TestType> TestManager::query()
 {
     TestType tt;
     return std::static_pointer_cast<TestType>(this->tests[tt.getName()]);
+}
+
+template<typename TestType>
+inline Variant TestManager::ask(typename TestType::presets p)
+{
+    auto sp = query<TestType>();
+
+    if (!sp)
+        return {};
+
+    return (*sp)(p);
 }
 
 }
