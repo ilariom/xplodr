@@ -6,6 +6,14 @@
 #include <string>
 #include <unordered_map>
 
+#define SECONDS(x) x
+#define MINUTES(x) (x * SECONDS(60))
+#define HOURS(x) (x * MINUTES(60))
+#define DAYS(x) (x * HOURS(24))
+#define WEEKS(x) (x * DAYS(7))
+#define MONTHS(x) (x * WEEKS(4))
+#define YEARS(x) (x * MONTHS(12))
+
 #define BEGIN namespace abtests {
 #define END public: \
     int operator[](presets p) { return static_cast<int>(p); }   \
@@ -22,6 +30,7 @@
 #define CREATE_TEST_AND_USE_COMPARATOR(x, cmp) class x : public xdr::Test<cmp> { public: x() : xdr::Test<cmp>(#x) {
 #define WITH_MIN_VERSION(x) setMinVersion(#x);
 #define WITH_MAX_VERSION(x) setMaxVersion(#x);
+#define THAT_EXPIRES_IN(x) setExpirationTime(x);
 #define AS }
 #define WITH_PRESETS(...) public: enum class presets { __VA_ARGS__ };
 #define WHERE private: std::unordered_map<presets, xdr::Variant> variants = {

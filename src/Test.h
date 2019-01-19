@@ -20,22 +20,31 @@ public:
     const std::string& getMinVersion() const { return this->minVer; }
     const std::string& getMaxVersion() const { return this->maxVer; }
 
-    inline bool isActiveForVersion(const std::string&);
+    inline bool isActiveForVersion(const std::string&) const;
+    inline bool isExpired(int) const;
 
 protected:
     void setMinVersion(const std::string& minVer) { this->minVer = minVer; }
     void setMaxVersion(const std::string& maxVer) { this->maxVer = maxVer; }
+    void setExpirationTime(int time) { this->time = time; }
 
 private:
     std::string name;
     std::string minVer;
     std::string maxVer;
+    int time = 0;
 };
 
 template<typename VC>
-inline bool Test<VC>::isActiveForVersion(const std::string& v)
+inline bool Test<VC>::isActiveForVersion(const std::string& v) const
 {
     return VC()(getMinVersion(), v) && VC()(v, getMaxVersion());
+}
+
+template<typename VC>
+inline bool Test<VC>::isExpired(int now) const
+{
+    return this->time == 0 || this->time <= now;
 }
 
 } // xdr

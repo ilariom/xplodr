@@ -7,6 +7,7 @@
 #undef CREATE_TEST_AND_USE_COMPARATOR
 #undef WITH_MIN_VERSION
 #undef WITH_MAX_VERSION
+#undef THAT_EXPIRES_IN
 #undef AS
 #undef WITH_PRESETS
 #undef WHERE
@@ -16,5 +17,13 @@
 #undef END_MAPPING
 #undef INTERFACE
 #undef IMPLEMENTATION_DETAILS
+
+#undef SECONDS
+#undef MINUTES
+#undef HOURS
+#undef DAYS
+#undef WEEKS
+#undef MONTHS
+#undef YEARS
 
 #endif
