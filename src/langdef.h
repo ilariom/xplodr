@@ -14,9 +14,10 @@
 #define MONTHS(x) (x * WEEKS(4))
 #define YEARS(x) (x * MONTHS(12))
 
-#define BEGIN namespace abtests {
+#define BEGIN namespace abtest {
 #define END public: \
     int operator[](presets p) { return static_cast<int>(p); }   \
+    presets operator[](int p) { return static_cast<presets>(p); }   \
     xdr::Variant operator()(presets p)  \
     {   \
         if(this->variants.find(p) == this->variants.end())  \
@@ -30,7 +31,8 @@
 #define CREATE_TEST_AND_USE_COMPARATOR(x, cmp) class x : public xdr::Test<cmp> { public: x() : xdr::Test<cmp>(#x) {
 #define WITH_MIN_VERSION(x) setMinVersion(#x);
 #define WITH_MAX_VERSION(x) setMaxVersion(#x);
-#define THAT_EXPIRES_IN(x) setExpirationTime(x);
+#define STARTING_FROM_TIMESTAMP(x) setExpirationTime(getExpirationTime() + (x));
+#define THAT_EXPIRES_IN(x) setExpirationTime(getExpirationTime() + (x));
 #define AS }
 #define WITH_PRESETS(...) public: enum class presets { __VA_ARGS__ };
 #define WHERE private: std::unordered_map<presets, xdr::Variant> variants = {

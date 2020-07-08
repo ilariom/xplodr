@@ -5,7 +5,7 @@
 #include "Variant.h"
 #include "TestManager.h"
 #include "langdef.h"
-#include "reqs.h"
+#include "tests.h"
 #include "langundef.h"
 
 #endif
